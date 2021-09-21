@@ -1,0 +1,15 @@
+SELECT
+    CONCAT(DOCID) as c_key,
+    CURRENT_TIMESTAMP() AS c_fetchdate,
+    DOCID,
+    BUKRS,
+    BELNR_MM,
+    BELNR_FI,
+    GJAHR,
+    SAP_PROC_STATUS,
+    TSP_DP_START,
+    TSP_PROC_START,
+    STBLG,
+    STJAH
+FROM "/OPT/VIM_2HEAD"
+WHERE :left_tsp_proc_start_date <= CONCAT(SUBSTRING(TSP_PROC_START, 0, 4), '-', SUBSTRING(TSP_PROC_START, 5, 2), '-', SUBSTRING(TSP_PROC_START, 7, 2))

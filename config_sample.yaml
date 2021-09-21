@@ -1,0 +1,173 @@
+signavio:
+  apiToken: <replace by a token generated in PI: Process Settings -> API -> Access token>
+  url: <replace by html defined in PI: Process Settings -> API -> Upload Endpoint>
+  #  proxyHost:
+  #  proxyPort:
+
+# access configuration for the staging area
+awsConfiguration:
+  accessKey: <replace by an AWS access key for programatic access>
+  secretKey: <replace by an AWS secret key for programatic access>
+  athenaWorkgroup: <replace by AWS ATHENA working group name>
+  region: <replace by AWS region, i.e. EU-CENTRAL-1>
+  bucket: <replace by AWS S3 bucket name: target location to save extracted data>
+  athenaDatabase: <replace by AWS ATHENA databse name: target for eventlog creation>
+
+# connection configuration
+dataSourceConnection:
+  - source: <replace by source system, i.e. saperp>
+#   verbosity: 4
+#   logfile: signavio-connector.log
+    name: S4H
+    host: <ip address of the host>
+    user: <user name to access source system>
+    password: <password to access source system>
+    client: 100
+    systemNumber: 00
+    tables:
+      - \"/OPT/AT_APPR_HIS\"
+      - \"/OPT/AT_LBA_LOG\"
+      - \"/OPT/VIM_1HEAD\"
+      - \"/OPT/VIM_1ITEM\"
+      - \"/OPT/VIM_1LOG\"
+      - \"/OPT/VIM_1PROC\"
+      - \"/OPT/VIM_1WI_AGT\"
+      - \"/OPT/VIM_2HEAD\"
+      - \"/OPT/VIM_8HEAD\"
+      - \"/OPT/VIM_8LOG\"
+      - \"/OPT/VIM_HD_DP\"
+      - \"/ORS/APPR_LOG\"
+      - \"/OTX/PF01_T_1LOG\"
+      - \"/OTX/PF01_T_1REG\"
+
+
+tableSyncConfigurations:
+  - name: OTX_PF01_T_1REG
+    dataSource: S4H
+    sqlFilePath: sql_scripts/_OTX_PF01_T_1REG.sql
+    keyColumn: c_key
+    mostRecentRowColumn: c_fetchdate
+    parameters:
+      - name: tsp_register_date
+        initial: 2021-07-01
+        format: YYYY-MM-dd
+        type: date
+  - name: OTX_PF01_T_1LOG
+    dataSource: S4H
+    sqlFilePath: sql_scripts/_OTX_PF01_T_1LOG.sql
+    keyColumn: c_key
+    mostRecentRowColumn: c_fetchdate
+    parameters:
+      - name: timestamp_date
+        initial: 2021-07-01
+        format: YYYY-MM-dd
+        type: date
+  - name: ORS_APPR_LOG
+    dataSource: S4H
+    sqlFilePath: sql_scripts/_ORS_APPR_LOG.sql
+    keyColumn: c_key
+    mostRecentRowColumn: c_fetchdate
+    parameters:
+      - name: complete_date
+        initial: 2021-07-01
+        format: YYYY-MM-dd
+        type: date
+  - name: OPT_VIM_2HEAD
+    dataSource: S4H
+    sqlFilePath: sql_scripts/_OPT_VIM_2HEAD.sql
+    keyColumn: c_key
+    mostRecentRowColumn: c_fetchdate
+    parameters:
+      - name: tsp_proc_start_date
+        initial: 2021-07-01
+        format: YYYY-MM-dd
+        type: date
+  - name: OPT_VIM_1LOG
+    dataSource: S4H
+    sqlFilePath: sql_scripts/_OPT_VIM_1LOG.sql
+    keyColumn: c_key
+    mostRecentRowColumn: c_fetchdate
+    parameters:
+      - name: end_date
+        initial: 2021-07-01
+        format: YYYY-MM-dd
+        type: date
+  - name: OPT_VIM_1HEAD
+    dataSource: S4H
+    sqlFilePath: sql_scripts/_OPT_VIM_1HEAD.sql
+    keyColumn: c_key
+    mostRecentRowColumn: c_fetchdate
+    parameters:
+      - name: budat_date
+        initial: 2021-07-01
+        format: YYYY-MM-dd
+        type: date
+      - name: bldat_date
+        initial: 2021-07-01
+        format: YYYY-MM-dd
+        type: date
+  - name: _OPT_VIM_8HEAD
+    dataSource: S4H
+    sqlFilePath: sql_scripts/_OPT_VIM_8HEAD.sql
+    keyColumn: c_key
+    mostRecentRowColumn: c_fetchdate
+    parameters:
+      - name: end_date
+        initial: 2021-07-01
+        format: YYYY-MM-dd
+        type: date
+#  - name: _OPT_AT_APPR_HIS
+#    dataSource: S4H
+#    sqlFilePath: sql_scripts/_OPT_AT_APPR_HIS.sql
+#    keyColumn: c_key
+#    mostRecentRowColumn: c_fetchdate
+#  - name: _OPT_AT_LBA_LOG
+#    dataSource: S4H
+#    sqlFilePath: sql_scripts/_OPT_AT_LBA_LOG.sql
+#    keyColumn: c_key
+#    mostRecentRowColumn: c_fetchdate
+
+#  - name: _OPT_VIM_1ITEM
+#    dataSource: S4H
+#    sqlFilePath: sql_scripts/_OPT_VIM_1ITEM.sql
+#    keyColumn: c_key
+#    mostRecentRowColumn: c_fetchdate
+
+#  - name: _OPT_VIM_1PROC
+#    dataSource: S4H
+#    sqlFilePath: sql_scripts/_OPT_VIM_1PROC.sql
+#    keyColumn: c_key
+#    mostRecentRowColumn: c_fetchdate
+#  - name: _OPT_VIM_1WI_AGT
+#    dataSource: S4H
+#    sqlFilePath: sql_scripts/_OPT_VIM_1WI_AGT.sql
+#    keyColumn: c_key
+#    mostRecentRowColumn: c_fetchdate
+
+#  - name: _OPT_VIM_8LOG
+#    dataSource: S4H
+#    sqlFilePath: sql_scripts/_OPT_VIM_8LOG.sql
+#    keyColumn: c_key
+#    mostRecentRowColumn: c_fetchdate
+#  - name: _OTX_PF01_T_1LOG
+#    dataSource: S4H
+#    sqlFilePath: sql_scripts/_OTX_PF01_T_1LOG.sql
+#    keyColumn: c_key
+#    mostRecentRowColumn: c_fetchdate
+#  - name: _OPT_VIM_HD_DP
+#    dataSource: S4H
+#    sqlFilePath: sql_scripts/_OPT_VIM_HD_DP.sql
+#    keyColumn: c_key
+#    mostRecentRowColumn: c_fetchdate
+
+
+eventCollectorConfigurations:
+  - name: P2P PO History
+    sqlFilePath: sql_scripts/t_saps4h_p2p_po_history.sql
+    collectFrom: staging
+    mapping:
+      caseId: c_caseid
+      timestamp:
+        fieldName: c_time
+        pattern: yyyy-M-d HH:mm:ss.SSS
+      activityName: c_eventname
