@@ -1,0 +1,18 @@
+# exclude spi specific files, i.e. cache directory, jar file, db, etc
+cache/
+delta.db
+signavio-connector-*.jar
+*.log
+
+# sap libraries
+*sapjco3*
+
+# exclude all yaml configs just in case, not to commit any credentials
+# keep only sample config with dummies
+config*yaml
+daily_config.yaml
+!config_sample.yaml
+!daily_config_sample.yaml
+
+~# exclude emacs autosaves
+*~
