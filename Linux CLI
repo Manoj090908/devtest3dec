@@ -8,3 +8,7 @@ Copy file from on dir to another
 go to home dir and use this cli
 cp sourrec full path and then destination full path like this
 root@ip-172-31-12-163:/home# cp /home/ubuntu/spi_connector_prod/spi_connector_vim_data_extract/signavio-connector-1.1063.jar  /home/ubuntu/spi_connector_prod/spi_connector_vim_eventlog
+
+
+copy to linux server by this launch windo sheet from start 
+scp -i signavio20janonprenise.pem pi-etl-extractor-onprem-v1.95.0.zip ubuntu@ec2-18-185-53-236.eu-central-1.compute.amazonaws.com:/home/ubuntu/signavio_on_premise_connector_bw4hana
