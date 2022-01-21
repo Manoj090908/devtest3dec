@@ -1,0 +1,2 @@
+transfer file using pscp.
+pscp -i C:\Users\m.kanwar\Desktop\Keys\Manoj_Kanwar_AWS.ppk signavio-connector-1.1063.jar manoj@ec2-3-65-20-217.eu-central-1.compute.amazonaws.com:/home/manoj/devtest3dec
