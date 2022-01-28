@@ -4,7 +4,7 @@ pscp -i C:\Users\m.kanwar\Desktop\Keys\Manoj_Kanwar_AWS.ppk signavio-connector-1
 if i want to copy directly in root and specific folder from window to linux terminal
 pscp -i C:\Users\m.kanwar\Desktop\Keys\Manoj_Kanwar_AWS.ppk signavio-connector-1.1063.jar manoj@ec2-3-65-20-217.eu-central-1.compute.amazonaws.com:/home/ubuntu/spi_connector_prod/spi_connector_vim_data_extract
 
-Copy file from on dir to another
+Copy file from on dir to another I am adding this to check updates and changes
 go to home dir and use this cli
 cp sourrec full path and then destination full path like this
 root@ip-172-31-12-163:/home# cp /home/ubuntu/spi_connector_prod/spi_connector_vim_data_extract/signavio-connector-1.1063.jar  /home/ubuntu/spi_connector_prod/spi_connector_vim_eventlog
