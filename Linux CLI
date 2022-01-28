@@ -12,3 +12,5 @@ root@ip-172-31-12-163:/home# cp /home/ubuntu/spi_connector_prod/spi_connector_vi
 
 copy to linux server by this launch windo sheet from start 
 scp -i signavio20janonprenise.pem pi-etl-extractor-onprem-v1.95.0.zip ubuntu@ec2-18-185-53-236.eu-central-1.compute.amazonaws.com:/home/ubuntu/signavio_on_premise_connector_bw4hana
+
+Thsi is row16 for test
